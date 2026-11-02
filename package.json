@@ -1,0 +1,33 @@
+{
+  "name": "karken-catalogo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:lan": "vite --host --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "deploy:prod": "npm run build && aws s3 sync dist/ s3://karken-catalogo --delete && aws cloudfront create-invalidation --distribution-id E3BONK6DMS6YV --paths \"/*\""
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.55.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-player": "^3.3.1",
+    "react-router-dom": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "rollup-plugin-visualizer": "^6.0.3",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2"
+  }
+}
