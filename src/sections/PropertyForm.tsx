@@ -35,8 +35,8 @@ export default function PropertyForm({
   const [totalM2, setTotalM2] = useState<number|''>('')
   const [price, setPrice] = useState<number|''>('')
   const [currency, setCurrency] = useState<'USD'|'ARS'>('USD')
-  const [city, setCity] = useState('Pico Truncado')
-  const [province, setProvince] = useState('Santa Cruz')
+  const [city, setCity] = useState('Pilar')
+  const [province, setProvince] = useState('Buenos Aires')
   const [description, setDescription] = useState('')
   const [videoUrl, setVideoUrl] = useState('')
   const [coverFile, setCoverFile] = useState<File|null>(null)
@@ -78,8 +78,8 @@ export default function PropertyForm({
     setTotalM2('')
     setPrice('')
     setCurrency('USD')
-    setCity('Pico Truncado')
-    setProvince('Santa Cruz')
+    setCity('Pilar')
+    setProvince('Buenos Aires')
     setDescription('')
     setVideoUrl('')
     setCoverFile(null)
@@ -358,7 +358,7 @@ export default function PropertyForm({
           <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Ciudad</label>
           <input 
             className="w-full h-11 px-3.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-[#0E2431]/60 text-sm font-medium text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-karken-green dark:focus:ring-karken-yellow focus:border-transparent transition-all" 
-            placeholder="Pico Truncado" 
+            placeholder="Pilar" 
             value={city} 
             onChange={e=>setCity(e.target.value)} 
           />
@@ -367,7 +367,7 @@ export default function PropertyForm({
           <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Provincia</label>
           <input 
             className="w-full h-11 px-3.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-[#0E2431]/60 text-sm font-medium text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-karken-green dark:focus:ring-karken-yellow focus:border-transparent transition-all" 
-            placeholder="Santa Cruz" 
+            placeholder="Buenos Aires" 
             value={province} 
             onChange={e=>setProvince(e.target.value)} 
           />

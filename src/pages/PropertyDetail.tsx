@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState, lazy, Suspense } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabaseClient'
-import { ArrowLeft, BedDouble, Bath, Ruler, MapPin, Phone, Share2, AlertCircle } from 'lucide-react'
+import { ArrowLeft, BedDouble, Bath, Ruler, MapPin, Phone, Share2, AlertCircle, Image as ImageIcon, Link2, Check } from 'lucide-react'
 import ThemeToggle from '../components/ThemeToggle'
-import karkenLogo from '../assets/KarkenLogo.jpg'
+import urbanLogo from '../assets/urban-logo.svg'
+import propertiesData from '../data/properties.json'
 
 const ReactPlayer = lazy(() => import('react-player'))
 
@@ -30,6 +30,7 @@ type Property = {
   currency?: 'USD' | 'ARS'
   created_at: string
   video_url?: string | null
+  cover_url?: string | null
 }
 
 type Img = { id: number; url: string; is_cover: boolean; position?: number | null }
@@ -49,13 +50,18 @@ export default function PropertyDetail() {
   const [prop, setProp] = useState<Property | null>(null)
   const [imgs, setImgs] = useState<Img[]>([])
   const [active, setActive] = useState(0)
+  const [mainImgLoaded, setMainImgLoaded] = useState(false)
   const [shared, setShared] = useState(false)
   const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    setMainImgLoaded(false)
+  }, [active])
+
   const whats = useMemo(() => {
-    const base = 'https://wa.me/5492974053219'
-    const url = `${window.location.origin}${window.location.hash}`
-    const txt = `¡Hola! Me interesa la propiedad que vi en el catálogo web:
+    const base = 'https://wa.me/5491123456789'
+    const url = `${window.location.origin}${window.location.pathname}#/propiedad/${prop?.id}`
+    const txt = `¡Hola! Me interesa la propiedad que vi en el catálogo de Urban Propiedades:
 🏡 *${prop?.title}*
 📍 ${prop?.city}, ${prop?.province}
 💰 *${formatMoney(prop?.price, prop?.currency)}*
@@ -68,55 +74,38 @@ export default function PropertyDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  async function load() {
+  function load() {
     if (!id) return
     setLoading(true)
     try {
-      const { data: p, error: pErr } = await supabase
-        .from('properties')
-        .select('*')
-        .eq('id', id)
-        .single()
+      const p = (propertiesData as any[]).find((item) => String(item.id) === String(id))
       
-      if (pErr) {
-        console.error("Error al cargar la propiedad:", pErr)
-      }
-      
-      if (!pErr && p) {
+      if (p) {
         setProp(p as Property)
-        supabase.rpc('increment_property_views', { property_id: id }).then(({ error }) => {
-          if (error) console.error("Error al incrementar visitas:", error)
-        })
+        const propertyImages: Img[] = (p.images && p.images.length > 0)
+          ? p.images
+          : (p.cover_url ? [{ id: 1, url: p.cover_url, is_cover: true, position: 1 }] : [])
+        setImgs(propertyImages)
+        setActive(0)
+      } else {
+        setProp(null)
       }
-
-
-      const { data: i, error: iErr } = await supabase
-        .from('property_images')
-        .select('*')
-        .eq('property_id', id)
-        .order('is_cover', { ascending: false })
-        .order('position', { ascending: true })
-        .order('id', { ascending: true })
-
-      if (iErr) {
-        console.error("Error al cargar imágenes de la propiedad:", iErr)
-      }
-
-      setImgs((i as Img[]) || [])
-      setActive(0)
     } catch (err) {
       console.error("Excepción en load():", err)
+      setProp(null)
     } finally {
       setLoading(false)
     }
   }
 
+  const shareUrl = useMemo(() => {
+    return `${window.location.origin}${window.location.pathname}#/propiedad/${prop?.id || ''}`
+  }, [prop?.id])
 
   const handleShare = () => {
-    const url = `${window.location.origin}/${window.location.hash}`
-    navigator.clipboard.writeText(url)
+    navigator.clipboard.writeText(shareUrl)
     setShared(true)
-    setTimeout(() => setShared(false), 3000)
+    setTimeout(() => setShared(false), 4500)
   }
 
   if (loading) {
@@ -133,7 +122,7 @@ export default function PropertyDetail() {
       <div className="min-h-screen bg-slate-50 dark:bg-[#0E2431] text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center p-6">
         <AlertCircle size={48} className="text-rose-500 mb-4" />
         <p className="text-xl font-bold mb-2">Propiedad no encontrada</p>
-        <p className="text-slate-500 dark:text-slate-400 mb-6 text-center max-w-sm">No pudimos cargar la propiedad solicitada o no existe en la base de datos.</p>
+        <p className="text-slate-500 dark:text-slate-400 mb-6 text-center max-w-sm">No pudimos cargar la propiedad solicitada o no existe en el catálogo.</p>
         <Link to="/" className="inline-flex items-center gap-2 bg-karken-green text-white px-5 py-2.5 rounded-xl font-bold hover:bg-[#1a4a25] transition-all">
           <ArrowLeft size={16} /> Volver al catálogo
         </Link>
@@ -147,15 +136,16 @@ export default function PropertyDetail() {
       <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-karken-green/10 dark:bg-karken-green/10 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-karken-yellow/10 dark:bg-karken-yellow/10 blur-[120px] pointer-events-none" />
 
+      {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-[#0E2431]/70 border-b border-slate-200/50 dark:border-white/5 shadow-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner">
-              <img src={karkenLogo} alt="Karken Logo" className="w-full h-full object-cover" />
+            <div className="w-11 h-11 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner p-1 bg-white/5">
+              <img src={urbanLogo} alt="Urban Propiedades Logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <div className="text-lg font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">KARKEN</div>
-              <div className="text-[9px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1">INMOBILIARIA</div>
+              <div className="text-lg font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">URBAN</div>
+              <div className="text-[9px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1">PROPIEDADES</div>
             </div>
           </Link>
           <div className="flex items-center gap-3">
@@ -198,17 +188,30 @@ export default function PropertyDetail() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 self-start">
+          <div className="relative flex flex-col items-start md:items-end gap-2 self-start">
             <button
               onClick={handleShare}
               className={`inline-flex items-center gap-2 font-bold px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 transition-all text-sm shadow-sm cursor-pointer
                 ${shared 
-                  ? 'bg-karken-green text-white border-karken-green' 
-                  : 'bg-white/40 dark:bg-[#0E2431]/40 hover:bg-slate-200/50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200'}`}
+                  ? 'bg-karken-green text-white border-karken-green shadow-md shadow-karken-green/20' 
+                  : 'bg-white/60 dark:bg-[#0E2431]/60 hover:bg-slate-200/50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200'}`}
+              title="Compartir link de la propiedad"
             >
-              <Share2 size={16} />
-              <span>{shared ? '¡Enlace copiado!' : 'Compartir'}</span>
+              {shared ? <Check size={16} className="text-white" /> : <Link2 size={16} />}
+              <span>{shared ? '¡Link copiado!' : 'Compartir link'}</span>
             </button>
+
+            {shared && (
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-white/95 dark:bg-[#0E2431]/95 border border-karken-green/30 dark:border-karken-yellow/30 shadow-xl text-xs transition-all">
+                <div className="flex items-center gap-1.5 font-bold text-karken-green dark:text-karken-yellow shrink-0">
+                  <Check size={14} className="shrink-0" />
+                  <span>Link copiado:</span>
+                </div>
+                <span className="font-mono text-[11px] text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-white/5 px-2 py-0.5 rounded border border-slate-200/50 dark:border-white/10 select-all break-all max-w-[280px] sm:max-w-[340px]">
+                  {shareUrl}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -220,18 +223,26 @@ export default function PropertyDetail() {
               <div className="w-full aspect-[16/10] bg-slate-200/50 dark:bg-[#0E2431]/50 rounded-2xl overflow-hidden border border-slate-200/50 dark:border-white/5 relative group shadow-md">
                 {imgs.length > 0 ? (
                   imgs[active] ? (
-                    <img 
-                      src={imgs[active].url} 
-                      alt={prop.title} 
-                      className="w-full h-full object-cover transition-all duration-300" 
-                    />
+                    <>
+                      {!mainImgLoaded && (
+                        <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 dark:from-slate-800/80 dark:via-slate-700/50 dark:to-slate-800/80 animate-pulse flex items-center justify-center">
+                          <ImageIcon className="text-slate-400/40 dark:text-slate-600/40" size={48} />
+                        </div>
+                      )}
+                      <img 
+                        src={imgs[active].url} 
+                        alt={prop.title} 
+                        decoding="async"
+                        onLoad={() => setMainImgLoaded(true)}
+                        className={`w-full h-full object-cover transition-opacity duration-300 ${mainImgLoaded ? 'opacity-100' : 'opacity-0'}`} 
+                      />
+                    </>
                   ) : null
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-900/30">
                     <span className="text-sm font-semibold">Sin imágenes disponibles</span>
                   </div>
                 )}
-
               </div>
               
               {imgs.length > 1 && (
@@ -360,7 +371,7 @@ export default function PropertyDetail() {
                 <p className="font-semibold text-slate-500 dark:text-slate-400">Atención personalizada:</p>
                 <p>Nuestros asesores responderán tus consultas de manera inmediata vía WhatsApp de Lunes a Sábados.</p>
                 <div className="p-3 bg-slate-200/50 dark:bg-white/5 rounded-xl text-center border border-slate-200/20">
-                  Ref de Propiedad: <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{prop.id.substring(0,8).toUpperCase()}</span>
+                  Ref de Propiedad: <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{prop.id.substring(0,12).toUpperCase()}</span>
                 </div>
               </div>
             </div>

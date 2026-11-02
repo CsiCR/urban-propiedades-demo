@@ -12,11 +12,11 @@ export default function ThemeToggle() {
     const root = document.documentElement
     if (root.classList.contains('dark')) {
       root.classList.remove('dark')
-      localStorage.setItem('karken-theme', 'light')
+      localStorage.setItem('urban-theme', 'light')
       setIsDark(false)
     } else {
       root.classList.add('dark')
-      localStorage.setItem('karken-theme', 'dark')
+      localStorage.setItem('urban-theme', 'dark')
       setIsDark(true)
     }
   }

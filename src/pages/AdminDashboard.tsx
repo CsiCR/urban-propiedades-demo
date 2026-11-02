@@ -3,7 +3,8 @@ import { requireAuth } from '../lib/requireAuth'
 import { supabase } from '../lib/supabaseClient'
 import PropertyForm, { Property } from '../sections/PropertyForm'
 import ThemeToggle from '../components/ThemeToggle'
-import karkenLogo from '../assets/KarkenLogo.jpg'
+import urbanLogo from '../assets/urban-logo.svg'
+import propertiesData from '../data/properties.json'
 import { PlusCircle, LogOut, FileText, Trash2, Edit3, ArrowLeft, Eye } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -19,13 +20,20 @@ export default function AdminDashboard() {
   }, [])
 
   async function load() {
-    const { data, error } = await supabase
-      .from('v_properties')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(50)
-    if (error) console.error('Error al cargar propiedades:', error)
-    setItems(data || [])
+    try {
+      const { data, error } = await supabase
+        .from('v_properties')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(50)
+      if (error || !data || data.length === 0) {
+        setItems(propertiesData as any[])
+      } else {
+        setItems(data)
+      }
+    } catch {
+      setItems(propertiesData as any[])
+    }
   }
 
   async function logout() {
@@ -124,11 +132,11 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner">
-              <img src={karkenLogo} alt="Karken Logo" className="w-full h-full object-cover" />
+            <div className="w-11 h-11 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner p-1 bg-white/5">
+              <img src={urbanLogo} alt="Urban Logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <div className="text-lg font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">KARKEN</div>
+              <div className="text-lg font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">URBAN</div>
               <div className="text-[9px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1">ADMINISTRACIÓN</div>
             </div>
           </div>
@@ -249,4 +257,4 @@ export default function AdminDashboard() {
       </main>
     </div>
   )
-}
+}

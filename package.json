@@ -1,5 +1,5 @@
 {
-  "name": "karken-catalogo",
+  "name": "urban-propiedades-demo",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "dev:lan": "vite --host --port 5173",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "deploy:prod": "npm run build && aws s3 sync dist/ s3://karken-catalogo --delete && aws cloudfront create-invalidation --distribution-id E3BONK6DMS6YV --paths \"/*\""
+    "deploy:prod": "npm run build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.55.0",

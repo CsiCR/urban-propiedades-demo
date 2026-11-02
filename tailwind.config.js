@@ -13,9 +13,14 @@ export default {
           yellow: "#FFD51F",
           green: "#215C2E",
           dark: "#0E2431"
+        },
+        urban: {
+          yellow: "#FFD51F",
+          green: "#215C2E",
+          dark: "#0E2431"
         }
       }
     }
   },
   plugins: []
-}
+}

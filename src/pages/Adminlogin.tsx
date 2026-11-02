@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabaseClient'
 import { ArrowLeft, Lock, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '../components/ThemeToggle'
-import karkenLogo from '../assets/KarkenLogo.jpg'
+import urbanLogo from '../assets/urban-logo.svg'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -43,12 +43,12 @@ export default function AdminLogin() {
         
         {/* Branding header */}
         <div className="text-center space-y-2">
-          <div className="w-16 h-16 rounded-full overflow-hidden border border-slate-200 dark:border-white/10 mx-auto shadow-md">
-            <img src={karkenLogo} alt="Karken Logo" className="w-full h-full object-cover" />
+          <div className="w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 mx-auto shadow-md p-1.5 bg-white/5">
+            <img src={urbanLogo} alt="Urban Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h2 className="text-2xl font-black font-display tracking-wide text-slate-800 dark:text-white leading-none">KARKEN</h2>
-            <p className="text-[10px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1 uppercase">Panel de Administración</p>
+            <h2 className="text-2xl font-black font-display tracking-wide text-slate-800 dark:text-white leading-none">URBAN</h2>
+            <p className="text-[10px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1 uppercase">Propiedades · Panel de Administración</p>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export default function AdminLogin() {
                 type="email"
                 required
                 className="w-full h-11 pl-10 pr-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-[#0E2431]/60 text-sm font-medium text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-karken-green dark:focus:ring-karken-yellow focus:border-transparent transition-all"
-                placeholder="ejemplo@correo.com"
+                placeholder="admin@urbanpropiedades.com"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
@@ -126,4 +126,4 @@ export default function AdminLogin() {
       </div>
     </div>
   )
-}
+}

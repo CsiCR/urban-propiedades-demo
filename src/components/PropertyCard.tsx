@@ -1,4 +1,5 @@
-import { BedDouble, Bath, Ruler, MapPin, Play } from 'lucide-react'
+import { useState } from 'react'
+import { BedDouble, Bath, Ruler, MapPin, Play, Image as ImageIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -31,23 +32,35 @@ function isDirectVideo(url?: string | null) {
 }
 
 export default function PropertyCard({ p }: Props) {
+  const [imgLoaded, setImgLoaded] = useState(false)
   const externalVideo = p.video_url && !isDirectVideo(p.video_url)
   const detailVideoHref = `#/propiedad/${p.id}#video`
   
-  // Opciones de brillo según la operación (Venta: Amarillo Karken, Alquiler: Verde Karken)
+  // Opciones de brillo según la operación (Venta: Amarillo Urban, Alquiler: Verde Urban)
   const glowClass = p.operation === 'venta' ? 'glow-yellow' : 'glow-green'
 
   return (
     <article className={`group relative rounded-2xl overflow-hidden glass-panel ${glowClass} border border-slate-200/50 dark:border-white/5 bg-white/40 dark:bg-[#0E2431]/40 flex flex-col h-full shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all duration-300`}>
       
       {/* Portada / Imagen */}
-      <Link to={`/propiedad/${p.id}`} className="block relative aspect-[4/3] overflow-hidden">
+      <Link to={`/propiedad/${p.id}`} className="block relative aspect-[4/3] overflow-hidden bg-slate-200/60 dark:bg-[#0E2431]/80">
         {p.cover_url ? (
-          <img 
-            src={p.cover_url} 
-            alt={p.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-          />
+          <>
+            {/* Skeleton animado con shimmer mientras carga */}
+            {!imgLoaded && (
+              <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 dark:from-slate-800/80 dark:via-slate-700/50 dark:to-slate-800/80 animate-pulse flex items-center justify-center">
+                <ImageIcon className="text-slate-400/40 dark:text-slate-600/40" size={32} />
+              </div>
+            )}
+            <img 
+              src={p.cover_url} 
+              alt={p.title} 
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImgLoaded(true)}
+              className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${imgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'}`} 
+            />
+          </>
         ) : (
           <div className="w-full h-full bg-slate-100 dark:bg-[#0E2431]/60 flex items-center justify-center text-slate-400 text-sm font-semibold">
             Sin imagen
@@ -146,4 +159,3 @@ export default function PropertyCard({ p }: Props) {
     </article>
   )
 }
-

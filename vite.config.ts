@@ -19,6 +19,7 @@ if (analyze) {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [react(), ...extraPlugins],
   server: {
     host: true,          // accesible desde la LAN (celu)
@@ -45,4 +46,3 @@ export default defineConfig({
     },
   },
 })
-

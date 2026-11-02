@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="urbanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#215C2E" />
+      <stop offset="100%" stop-color="#0E2431" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD51F" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#urbanGrad)" />
+  <g transform="translate(24, 22)">
+    <!-- Edificio izquierdo -->
+    <rect x="6" y="32" width="18" height="42" rx="3" fill="#ffffff" fill-opacity="0.95" />
+    <!-- Edificio central alto -->
+    <rect x="27" y="16" width="18" height="58" rx="3" fill="url(#accentGrad)" />
+    <!-- Edificio derecho -->
+    <rect x="48" y="28" width="18" height="46" rx="3" fill="#ffffff" fill-opacity="0.8" />
+    <!-- Ventanas detalle -->
+    <rect x="31" y="22" width="4" height="6" rx="1" fill="#0E2431" />
+    <rect x="37" y="22" width="4" height="6" rx="1" fill="#0E2431" />
+    <rect x="31" y="32" width="4" height="6" rx="1" fill="#0E2431" />
+    <rect x="37" y="32" width="4" height="6" rx="1" fill="#0E2431" />
+    <rect x="31" y="42" width="4" height="6" rx="1" fill="#0E2431" />
+    <rect x="37" y="42" width="4" height="6" rx="1" fill="#0E2431" />
+  </g>
+</svg>
+

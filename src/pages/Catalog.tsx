@@ -4,8 +4,8 @@ import Filters, { FiltersState } from '../components/Filters'
 import PropertyCard from '../components/PropertyCard'
 import EmptyState from '../components/EmptyState'
 import ThemeToggle from '../components/ThemeToggle'
-import { supabase } from '../lib/supabaseClient'
-import karkenLogo from '../assets/KarkenLogo.jpg'
+import urbanLogo from '../assets/urban-logo.svg'
+import propertiesData from '../data/properties.json'
 
 const PAGE_SIZE = 8
 
@@ -29,7 +29,7 @@ type Property = {
 export default function Catalog() {
   const [filters, setFilters] = useState<FiltersState>(() => {
     try {
-      const saved = sessionStorage.getItem('karken-catalog-filters')
+      const saved = sessionStorage.getItem('urban-catalog-filters')
       return saved ? JSON.parse(saved) : {}
     } catch {
       return {}
@@ -39,7 +39,7 @@ export default function Catalog() {
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState<number>(() => {
     try {
-      const saved = sessionStorage.getItem('karken-catalog-page')
+      const saved = sessionStorage.getItem('urban-catalog-page')
       return saved ? Number(saved) : 1
     } catch {
       return 1
@@ -56,12 +56,12 @@ export default function Catalog() {
     const resolvedFilters = typeof newFilters === 'function' ? newFilters(filters) : newFilters
     setFilters(resolvedFilters)
     setPage(1)
-    sessionStorage.setItem('karken-catalog-filters', JSON.stringify(resolvedFilters))
-    sessionStorage.setItem('karken-catalog-page', '1')
+    sessionStorage.setItem('urban-catalog-filters', JSON.stringify(resolvedFilters))
+    sessionStorage.setItem('urban-catalog-page', '1')
   }
 
   useEffect(() => {
-    sessionStorage.setItem('karken-catalog-page', page.toString())
+    sessionStorage.setItem('urban-catalog-page', page.toString())
   }, [page])
 
   useEffect(() => {
@@ -69,28 +69,28 @@ export default function Catalog() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, page])
 
-  async function fetchData() {
+  function fetchData() {
     setLoading(true)
-    let query = supabase.from('v_properties').select('*', { count: 'exact' })
 
-    if (filters.operation) query = query.eq('operation', filters.operation)
-    if (filters.type) query = query.eq('type', filters.type)
-    if (filters.currency) query = query.eq('currency', filters.currency)
+    const all = propertiesData as Property[]
+    const filtered = all.filter((p) => {
+      if (filters.operation && p.operation !== filters.operation) return false
+      if (filters.type && p.type.toLowerCase() !== filters.type.toLowerCase()) return false
+      if (filters.currency && p.currency !== filters.currency) return false
+      if (filters.minPrice && /^\d+$/.test(filters.minPrice)) {
+        if (p.price == null || p.price < Number(filters.minPrice)) return false
+      }
+      if (filters.maxPrice && /^\d+$/.test(filters.maxPrice)) {
+        if (p.price == null || p.price > Number(filters.maxPrice)) return false
+      }
+      return true
+    })
 
-    if (filters.minPrice && /^\d+$/.test(filters.minPrice)) {
-      query = query.gte('price', Number(filters.minPrice))
-    }
-    if (filters.maxPrice && /^\d+$/.test(filters.maxPrice)) {
-      query = query.lte('price', Number(filters.maxPrice))
-    }
+    // Ordenar por fecha de creación más reciente
+    filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
-    const { data, error, count } = await query
-      .order('created_at', { ascending: false })
-      .range(range.from, range.to)
-
-    if (error) console.error('Supabase error on Catalog:', error)
-    setItems((data || []) as Property[])
-    setTotal(count || 0)
+    setTotal(filtered.length)
+    setItems(filtered.slice(range.from, range.to + 1))
     setLoading(false)
   }
 
@@ -109,12 +109,12 @@ export default function Catalog() {
           
           {/* Logo y Branding */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner">
-              <img src={karkenLogo} alt="Karken Logo" className="w-full h-full object-cover" />
+            <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-inner p-1 bg-white/5">
+              <img src={urbanLogo} alt="Urban Propiedades Logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <div className="text-xl font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">KARKEN</div>
-              <div className="text-[10px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1">INMOBILIARIA</div>
+              <div className="text-xl font-black tracking-wider font-display text-karken-dark dark:text-white leading-none">URBAN</div>
+              <div className="text-[10px] font-bold text-karken-green dark:text-karken-yellow tracking-widest mt-1">PROPIEDADES</div>
             </div>
           </div>
 
@@ -122,7 +122,7 @@ export default function Catalog() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <a
-              href="https://wa.me/5492974053219"
+              href="https://wa.me/5491123456789"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-bold text-white bg-karken-green hover:bg-[#1a4a25] px-4 py-2.5 rounded-xl shadow-md shadow-karken-green/20 hover:shadow-lg hover:shadow-karken-green/30 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm"
@@ -152,7 +152,7 @@ export default function Catalog() {
             </span>
           </h1>
           <p className="mt-3 text-base md:text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-medium">
-            Propiedades seleccionadas en Santa Cruz con atención personalizada y transparencia garantizada.
+            Propiedades seleccionadas con atención personalizada y transparencia garantizada.
           </p>
           
           {/* Panel de Filtros */}
@@ -212,10 +212,23 @@ export default function Catalog() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 py-8 border-t border-slate-200/50 dark:border-white/5 text-center text-slate-500 dark:text-slate-400 text-sm font-medium">
-        <p>© {new Date().getFullYear()} Karken Inmobiliaria. Todos los derechos reservados.</p>
+      <footer className="mt-20 py-10 border-t border-slate-200/50 dark:border-white/5 text-slate-500 dark:text-slate-400 text-sm font-medium">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg overflow-hidden p-0.5 border border-slate-200 dark:border-white/10">
+              <img src={urbanLogo} alt="Urban Propiedades" className="w-full h-full object-contain" />
+            </div>
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200">Urban Propiedades</span>
+              <span className="text-xs text-slate-400 block sm:inline sm:ml-1.5">· Catálogo Inmobiliario</span>
+            </div>
+          </div>
+          <p>© {new Date().getFullYear()} Urban Propiedades. Todos los derechos reservados.</p>
+          <div className="text-xs text-slate-400">
+            contacto@urbanpropiedades.com · +54 11 5555-0123
+          </div>
+        </div>
       </footer>
     </div>
   )
 }
-

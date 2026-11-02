@@ -1,0 +1,452 @@
+[
+  {
+    "id": "urb-casa-01",
+    "title": "Casa Moderna con Piscina y Jardín Parquizado",
+    "description": "Exclusiva residencia de estilo contemporáneo desarrollada en dos plantas. En planta baja cuenta con un amplio living-comedor con ventanales de doble altura hacia el jardín, cocina integrada con isla de cuarzo y muebles a medida, toilette de recepción y galería techada con parrilla. En planta alta dispone de máster suite con vestidor e hidromasaje, más dos dormitorios luminosos y baño completo.\n\nEl exterior ofrece piscina climatizada con solárium atérmico, cochera cubierta para dos vehículos y sistema de riego automático. Calefacción por losa radiante y aire acondicionado central en todos los ambientes.",
+    "operation": "venta",
+    "type": "casa",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "covered_m2": 260,
+    "total_m2": 650,
+    "price": 340000,
+    "currency": "USD",
+    "city": "Pilar",
+    "province": "Buenos Aires",
+    "address": "Av. de las Palmeras 1420, Barrio Cerrado Los Álamos",
+    "featured": true,
+    "created_at": "2025-01-20T10:00:00Z",
+    "cover_url": "./images/properties/urb-casa-01-cover.jpg",
+    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "images": [
+      {
+        "id": 1,
+        "url": "./images/properties/urb-casa-01-img-1.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 2,
+        "url": "./images/properties/urb-casa-01-img-2.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 3,
+        "url": "./images/properties/urb-casa-01-img-3.jpg",
+        "is_cover": false,
+        "position": 3
+      },
+      {
+        "id": 4,
+        "url": "./images/properties/urb-casa-01-img-4.jpg",
+        "is_cover": false,
+        "position": 4
+      }
+    ]
+  },
+  {
+    "id": "urb-casa-02",
+    "title": "Chalet Minimalista de Diseño en Lomas del Valle",
+    "description": "Magnífica propiedad a estrenar con arquitectura de líneas puras y hormigón visto. Destacan sus amplios espacios diáfanos, techos altos e iluminación LED empotrada. Cuenta con 4 dormitorios (2 en suite), playroom independiente, lavadero con tender y cava de vinos.\n\nParque trasero con deck de madera dura, piscina de borde infinito con vista abierta a las sierras, pérgola bioclimática y garaje cerrado para 3 autos. Seguridad perimetral las 24 horas.",
+    "operation": "venta",
+    "type": "casa",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "covered_m2": 340,
+    "total_m2": 900,
+    "price": 460000,
+    "currency": "USD",
+    "city": "Villa Allende",
+    "province": "Córdoba",
+    "address": "Camino del Mirador 840",
+    "featured": true,
+    "created_at": "2025-01-18T14:30:00Z",
+    "cover_url": "./images/properties/urb-casa-02-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 5,
+        "url": "./images/properties/urb-casa-02-img-5.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 6,
+        "url": "./images/properties/urb-casa-02-img-6.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 7,
+        "url": "./images/properties/urb-casa-02-img-7.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-casa-03",
+    "title": "Hermosa Casa Familiar con Quincho y Parque",
+    "description": "Excelente casa para alquiler en zona residencial tranquila. Confortable distribución en una sola planta: gran living con hogar a leña, cocina comedor diario totalmente equipada, 3 dormitorios con placares integrados y 2 baños completos.\n\nGran quincho cerrado con asador tradicional, horno a leña y baño independiente. Parque verde arbolado y entrada vehicular techada. Cercano a colegios, centros comerciales y accesos rápidos.",
+    "operation": "alquiler",
+    "type": "casa",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "covered_m2": 190,
+    "total_m2": 520,
+    "price": 1200,
+    "currency": "USD",
+    "city": "San Isidro",
+    "province": "Buenos Aires",
+    "address": "Calle Las Heras 620",
+    "featured": false,
+    "created_at": "2025-01-15T09:15:00Z",
+    "cover_url": "./images/properties/urb-casa-03-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 8,
+        "url": "./images/properties/urb-casa-03-img-8.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 9,
+        "url": "./images/properties/urb-casa-03-img-9.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 10,
+        "url": "./images/properties/urb-casa-03-img-10.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-depto-01",
+    "title": "Semipiso Premium con Balcón Aterrazado y Amenities",
+    "description": "Impecable departamento de 3 ambientes de máxima categoría en torre de primera línea. Palier privado, master suite con vestidor, segundo dormitorio con baño propio, cocina con mesadas Silestone y artefactos de última generación.\n\nBalcón aterrazado con vista panorámica a la ciudad y al río. El complejo ofrece piscina olímpica en piso 20, gimnasio panorámico, sauna, SUM equipado para eventos y seguridad 24 horas. Incluye dos cocheras fijas cubiertas y baulera.",
+    "operation": "venta",
+    "type": "departamento",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "covered_m2": 115,
+    "total_m2": 130,
+    "price": 285000,
+    "currency": "USD",
+    "city": "Rosario",
+    "province": "Santa Fe",
+    "address": "Bv. Oroño 1150, Piso 14",
+    "featured": true,
+    "created_at": "2025-01-22T11:45:00Z",
+    "cover_url": "./images/properties/urb-depto-01-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 11,
+        "url": "./images/properties/urb-depto-01-img-11.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 12,
+        "url": "./images/properties/urb-depto-01-img-12.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 13,
+        "url": "./images/properties/urb-depto-01-img-13.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-depto-02",
+    "title": "Penthouse de Lujo en Altura con Terraza Exclusiva",
+    "description": "Exclusivo penthouse dúplex en una de las zonas más cotizadas. Planta principal con imponente recepción vidriada de triple orientación, cocina gourmet de concepto abierto y toilette. Planta alta con tres dormitorios en suite y máster con jacuzzi.\n\nTerraza privada de 80 m² con jacuzzi exterior, parrilla propia y solárium con vistas 360° al skyline urbano. Cochera doble subterránea con punto de carga para auto eléctrico.",
+    "operation": "venta",
+    "type": "departamento",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "covered_m2": 210,
+    "total_m2": 290,
+    "price": 520000,
+    "currency": "USD",
+    "city": "Buenos Aires",
+    "province": "Buenos Aires",
+    "address": "Av. del Libertador 3600, Palermo Chico",
+    "featured": true,
+    "created_at": "2025-01-25T16:20:00Z",
+    "cover_url": "./images/properties/urb-depto-02-cover.jpg",
+    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "images": [
+      {
+        "id": 14,
+        "url": "./images/properties/urb-depto-02-img-14.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 15,
+        "url": "./images/properties/urb-depto-02-img-15.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 16,
+        "url": "./images/properties/urb-depto-02-img-16.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-depto-03",
+    "title": "Departamento 2 Ambientes Moderno y Luminoso",
+    "description": "Excelente departamento totalmente amoblado y decorado con estilo nórdico moderno. Living-comedor con salida a balcón al frente, dormitorio con placard de piso a techo y baño completo con ventilación natural.\n\nCocina integrada con barra desayunadora, heladera no frost, lavarropas y horno eléctrico. El edificio cuenta con terraza común, laundry y bajas expensas. Ideal para profesionales o estudiantes.",
+    "operation": "alquiler",
+    "type": "departamento",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "covered_m2": 48,
+    "total_m2": 54,
+    "price": 650000,
+    "currency": "ARS",
+    "city": "Córdoba",
+    "province": "Córdoba",
+    "address": "Calle Rondeau 480, Nueva Córdoba",
+    "featured": false,
+    "created_at": "2025-01-10T08:00:00Z",
+    "cover_url": "./images/properties/urb-depto-03-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 17,
+        "url": "./images/properties/urb-depto-03-img-17.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 18,
+        "url": "./images/properties/urb-depto-03-img-18.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 19,
+        "url": "./images/properties/urb-depto-03-img-19.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-terreno-01",
+    "title": "Lote Central en Barrio Privado Náutico",
+    "description": "Excepcional lote perimetral con orientación norte y salida directa a laguna navegable. Ubicación privilegiada dentro del barrio, no inundable, suelo nivelado y listo para comenzar a construir inmediatamente.\n\nEl barrio cuenta con club house sobre la laguna, canchas de tenis de polvo de ladrillo, fútbol, muelle náutico y seguridad privada con monitoreo de cámaras. Todos los servicios subterráneos: agua corriente, luz, gas natural y fibra óptica.",
+    "operation": "venta",
+    "type": "terreno",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "covered_m2": 0,
+    "total_m2": 850,
+    "price": 95000,
+    "currency": "USD",
+    "city": "Tigre",
+    "province": "Buenos Aires",
+    "address": "Ruta 27 km 8.5, Barrio Los Canales Lote 142",
+    "featured": true,
+    "created_at": "2025-01-12T10:20:00Z",
+    "cover_url": "./images/properties/urb-terreno-01-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 20,
+        "url": "./images/properties/urb-terreno-01-img-20.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 21,
+        "url": "./images/properties/urb-terreno-01-img-21.jpg",
+        "is_cover": false,
+        "position": 2
+      }
+    ]
+  },
+  {
+    "id": "urb-terreno-02",
+    "title": "Fracción con Vista a las Sierras para Proyecto Turístico",
+    "description": "Extraordinario terreno de 2.400 m² con pendiente suave y vista panorámica limpia a la cordillera y valle. Vegetación autóctona de chañares y algarrobos preservados.\n\nFactibilidad de agua de vertiente y tendido eléctrico en la puerta. Excelente acceso asfaltado hasta 100 metros del predio. Ideal para construcción de complejo de cabañas boutique, glamping o residencia de descanso.",
+    "operation": "venta",
+    "type": "terreno",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "covered_m2": 0,
+    "total_m2": 2400,
+    "price": 68000,
+    "currency": "USD",
+    "city": "Luján de Cuyo",
+    "province": "Mendoza",
+    "address": "Camino de las Bodegas s/n",
+    "featured": false,
+    "created_at": "2025-01-08T15:00:00Z",
+    "cover_url": "./images/properties/urb-terreno-02-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 22,
+        "url": "./images/properties/urb-terreno-02-img-22.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 23,
+        "url": "./images/properties/urb-terreno-02-img-23.jpg",
+        "is_cover": false,
+        "position": 2
+      }
+    ]
+  },
+  {
+    "id": "urb-terreno-03",
+    "title": "Terreno Comercial sobre Colectora en Alquiler",
+    "description": "Predio cerrado de 1.200 m² con 30 metros lineales de frente sobre colectora de alto tránsito vehicular y visualización directa desde autopista. Suelo compacto y nivelado con portón de acceso para camiones de gran porte.\n\nIdeal para depósito abierto, exhibición de maquinaria vial o agrícola, corralón de materiales, logística liviana o guarda de vehículos. Cuenta con pilar de luz trifásica y agua corriente.",
+    "operation": "alquiler",
+    "type": "terreno",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "covered_m2": 0,
+    "total_m2": 1200,
+    "price": 850000,
+    "currency": "ARS",
+    "city": "Campana",
+    "province": "Buenos Aires",
+    "address": "Colectora Panamericana Km 74",
+    "featured": false,
+    "created_at": "2025-01-05T09:30:00Z",
+    "cover_url": "./images/properties/urb-terreno-03-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 24,
+        "url": "./images/properties/urb-terreno-03-img-24.jpg",
+        "is_cover": true,
+        "position": 1
+      }
+    ]
+  },
+  {
+    "id": "urb-local-01",
+    "title": "Local Comercial en Esquina Estratégica Peatonal",
+    "description": "Extraordinario local en esquina con doble frente vidriado de 18 metros lineales totales en zona de máxima afluencia comercial peatonal y vehicular. Salón principal diáfano sin columnas intermedias, piso de microcemento alisado y luminarias empotradas.\n\nCuenta con sector posterior de depósito, oficina de administración y dos baños (uno adaptado para movilidad reducida). Equipos de climatización inverter frío/calor instalados. Excelente visibilidad para franquicias o marcas de primer nivel.",
+    "operation": "venta",
+    "type": "local",
+    "bedrooms": 0,
+    "bathrooms": 2,
+    "covered_m2": 145,
+    "total_m2": 145,
+    "price": 220000,
+    "currency": "USD",
+    "city": "Mar del Plata",
+    "province": "Buenos Aires",
+    "address": "Calle Güemes esquina San Lorenzo",
+    "featured": true,
+    "created_at": "2025-01-26T17:00:00Z",
+    "cover_url": "./images/properties/urb-local-01-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 25,
+        "url": "./images/properties/urb-local-01-img-25.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 26,
+        "url": "./images/properties/urb-local-01-img-26.jpg",
+        "is_cover": false,
+        "position": 2
+      },
+      {
+        "id": 27,
+        "url": "./images/properties/urb-local-01-img-27.jpg",
+        "is_cover": false,
+        "position": 3
+      }
+    ]
+  },
+  {
+    "id": "urb-local-02",
+    "title": "Espacio Comercial en Galería Gourmet y Corporativa",
+    "description": "Moderno local comercial desarrollado con materiales nobles (madera, hierro negro y vidrio templado). Cuenta con habilitación aprobada para rubro gastronómico/cafetería de especialidad, barra de atención al público, cocina con tiraje a 4 vientos y salón climatizado.\n\nExcelente sinergia con edificios de oficinas y residenciales de categoría alrededor. Posibilidad de explotar mesas exteriores en vereda con pérgola.",
+    "operation": "venta",
+    "type": "local",
+    "bedrooms": 0,
+    "bathrooms": 2,
+    "covered_m2": 95,
+    "total_m2": 110,
+    "price": 165000,
+    "currency": "USD",
+    "city": "Buenos Aires",
+    "province": "Buenos Aires",
+    "address": "Gorriti 5100, Palermo Soho",
+    "featured": true,
+    "created_at": "2025-01-28T12:10:00Z",
+    "cover_url": "./images/properties/urb-local-02-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 28,
+        "url": "./images/properties/urb-local-02-img-28.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 29,
+        "url": "./images/properties/urb-local-02-img-29.jpg",
+        "is_cover": false,
+        "position": 2
+      }
+    ]
+  },
+  {
+    "id": "urb-local-03",
+    "title": "Local Comercial / Showroom en Alquiler en Polo de Diseño",
+    "description": "Impecable salón comercial para alquiler de 120 m² en planta baja con entrepiso para oficinas o depósito privado. Frente vidriado con cortina metálica microperforada automática.\n\nInstalación eléctrica reforzada, luminarias led instaladas y preinstalación de aire acondicionado. Zona de gran crecimiento comercial y movimiento permanente. Contrato comercial según normativa vigente.",
+    "operation": "alquiler",
+    "type": "local",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "covered_m2": 120,
+    "total_m2": 120,
+    "price": 980000,
+    "currency": "ARS",
+    "city": "Rosario",
+    "province": "Santa Fe",
+    "address": "Calle Corrientes 820",
+    "featured": false,
+    "created_at": "2025-01-14T10:40:00Z",
+    "cover_url": "./images/properties/urb-local-03-cover.jpg",
+    "video_url": null,
+    "images": [
+      {
+        "id": 30,
+        "url": "./images/properties/urb-local-03-img-30.jpg",
+        "is_cover": true,
+        "position": 1
+      },
+      {
+        "id": 31,
+        "url": "./images/properties/urb-local-03-img-31.jpg",
+        "is_cover": false,
+        "position": 2
+      }
+    ]
+  }
+]
