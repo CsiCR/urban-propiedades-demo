@@ -58,6 +58,12 @@ export default function Catalog() {
     setPage(1)
     sessionStorage.setItem('urban-catalog-filters', JSON.stringify(resolvedFilters))
     sessionStorage.setItem('urban-catalog-page', '1')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -192,7 +198,7 @@ export default function Catalog() {
           <div className="flex items-center justify-center gap-4 mt-12">
             <button
               disabled={page === 1}
-              onClick={() => setPage((p) => p - 1)}
+              onClick={() => handlePageChange(page - 1)}
               className="px-4 py-2 rounded-xl text-sm font-bold border border-slate-200 dark:border-white/10 glass-panel bg-white/40 dark:bg-[#0E2431]/40 disabled:opacity-40 hover:bg-slate-200/50 dark:hover:bg-white/10 hover:border-karken-green/40 dark:hover:border-karken-yellow/40 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:pointer-events-none"
             >
               Anterior
@@ -202,7 +208,7 @@ export default function Catalog() {
             </span>
             <button
               disabled={page === totalPages}
-              onClick={() => setPage((p) => p + 1)}
+              onClick={() => handlePageChange(page + 1)}
               className="px-4 py-2 rounded-xl text-sm font-bold border border-slate-200 dark:border-white/10 glass-panel bg-white/40 dark:bg-[#0E2431]/40 disabled:opacity-40 hover:bg-slate-200/50 dark:hover:bg-white/10 hover:border-karken-green/40 dark:hover:border-karken-yellow/40 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:pointer-events-none"
             >
               Siguiente
