@@ -17,7 +17,7 @@
     "featured": true,
     "created_at": "2025-01-20T10:00:00Z",
     "cover_url": "./images/properties/urb-casa-01-cover.jpg",
-    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "video_url": null,
     "images": [
       {
         "id": 1,
@@ -183,7 +183,7 @@
     "featured": true,
     "created_at": "2025-01-25T16:20:00Z",
     "cover_url": "./images/properties/urb-depto-02-cover.jpg",
-    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "video_url": null,
     "images": [
       {
         "id": 14,
